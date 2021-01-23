@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using coreMediatr.Models;
 using coreMediatr.Persistance;
+using coreMediatr.Repository;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,6 +30,7 @@ namespace coreMediatr
 
         public static void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IArticle, ArticleRepository>();
             services.AddMediatR(typeof(Startup));
             services.AddDbContext<MediatRContext>(optionsAction => optionsAction.UseInMemoryDatabase("memoryDb"));
             services.AddControllers();

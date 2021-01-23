@@ -1,29 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using coreMediatr.Application.Articles.Queries;
 using coreMediatr.Models;
 using coreMediatr.Persistance;
 using MediatR;
-using Microsoft.AspNetCore.Components;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
-namespace coreMediatr.Application.Articles.Queries
+namespace coreMediatr.Handlers
 {
     public class GetAllArticleHandler : IRequestHandler<GetAllArticleQuery,List<Article>>
     {
-        private readonly MediatRContext _mediatRContext;
-
-        public GetAllArticleHandler(MediatRContext mediatRContext)
+        private readonly IArticle _article;
+        public GetAllArticleHandler(IArticle article)
         {
-            _mediatRContext = mediatRContext;
+            _article = article;
         }
 
         public async Task<List<Article>> Handle(GetAllArticleQuery request, CancellationToken cancellationToken)
         {
-            return _mediatRContext.Articles.ToList();
+            return _article.GetAllArticle(request);
         }
     }
 }

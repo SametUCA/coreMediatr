@@ -7,7 +7,7 @@ namespace coreMediatr.Application.Articles.Queries
 {
     public class GetArticleByIdQuery : IRequest<Article>
     {
-        public int Id { get; set; } // 2
+        public int Id { get; set; }
         
     }
 }

@@ -11,16 +11,17 @@ namespace coreMediatr.Controllers
     public class ArticleController : Controller
     {
         private readonly IMediator _mediator;
-
-        public ArticleController(IMediator mediator)
+        private readonly IArticle _article;
+        public ArticleController(IMediator mediator, IArticle article)
         {
             _mediator = mediator;
+            _article = article;
         }
         
-        [HttpGet("FindArticleById/{id}")]
-        public async Task<IActionResult> GetArticleById([FromRoute]GetArticleByIdQuery request=null)
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetArticleById([FromRoute]GetArticleByIdQuery request)
         {
-            return request!=null ? Ok(await _mediator.Send(request)) : Ok(StatusCode(200));
+            return Ok(await _mediator.Send(request));
         }
         
         [HttpPost]
@@ -32,7 +33,7 @@ namespace coreMediatr.Controllers
 
         [HttpGet]
         [Route("GetAll")]
-        public async Task<IActionResult> GetAllArticle(GetAllArticleQuery request)
+        public async Task<IActionResult> GetAllArticle([FromRoute]GetAllArticleQuery request)
         {
             return Ok(await _mediator.Send(request));
         }

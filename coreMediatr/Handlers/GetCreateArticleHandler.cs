@@ -2,29 +2,22 @@
 using System.Threading.Tasks;
 using coreMediatr.Application.Articles.Queries;
 using coreMediatr.Models;
-using coreMediatr.Persistance;
 using MediatR;
 
 namespace coreMediatr.Handlers
 {
     public class GetCreateArticleHandler : IRequestHandler<CreateArticleQuery,Article>
     {
-        private readonly MediatRContext _mediatRContext;
+        private readonly IArticle _article;
 
-        public GetCreateArticleHandler(MediatRContext mediatRContext)
+        public GetCreateArticleHandler(IArticle article)
         {
-            _mediatRContext = mediatRContext;
+            _article = article;
         }
 
         public async Task<Article> Handle(CreateArticleQuery request, CancellationToken cancellationToken)
         {
-            var article = new Article
-            {
-                Id = request.Id,
-                Name = request.Name
-            };
-            await _mediatRContext.Articles.AddAsync(article, cancellationToken);
-            return article;
+            return _article.CreateArticle(request);
         }
     }
 }

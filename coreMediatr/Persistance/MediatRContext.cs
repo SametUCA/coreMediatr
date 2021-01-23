@@ -16,17 +16,17 @@ namespace coreMediatr.Persistance
                 new Article
                 {
                     Id = 1,
-                    Name = "Samet"
+                    Name = "Test01"
                 },
                 new Article
                 {
                     Id = 2,
-                    Name = "Samet"
+                    Name = "Test02"
                 },
                 new Article
                 {
                     Id = 3,
-                    Name = "Samet"
+                    Name = "Test03"
                 }
             );
             base.OnModelCreating(modelBuilder);

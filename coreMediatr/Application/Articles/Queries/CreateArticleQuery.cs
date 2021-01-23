@@ -1,6 +1,5 @@
 ﻿using coreMediatr.Models;
 using MediatR;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace coreMediatr.Application.Articles.Queries
 {

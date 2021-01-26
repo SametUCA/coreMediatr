@@ -37,6 +37,13 @@ namespace coreMediatr.Controllers
         {
             return Ok(await _mediator.Send(request));
         }
+        
+        [HttpPost]
+        [Route("Delete/{id}")]
+        public async Task<IActionResult> DeleteArticle([FromRoute]GetAllArticleQuery request)
+        {
+            return Ok(await _mediator.Send(request));
+        }
 
         public IActionResult Index()
         {

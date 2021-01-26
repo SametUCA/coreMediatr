@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using coreMediatr.Application.Articles.Queries;
+using coreMediatr.Handlers;
 
 namespace coreMediatr.Models
 {
@@ -9,5 +10,6 @@ namespace coreMediatr.Models
         public List<Article> GetAllArticle(GetAllArticleQuery request);
 
         public Article GetArticleById(GetArticleByIdQuery request);
+        public Article DeleteArticle(DeleteArticleQuery request);
     }
 }

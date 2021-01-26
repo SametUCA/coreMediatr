@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using ASP;
 using coreMediatr.Application.Articles.Queries;
 using coreMediatr.Models;
 using coreMediatr.Persistance;
@@ -39,6 +40,13 @@ namespace coreMediatr.Repository
         {
             var article = _mediatRContext.Articles.FirstOrDefault(articles => articles.Id == request.Id);
             return article;
+        }
+
+        public Article DeleteArticle(DeleteArticleQuery request)
+        {
+            var deleteArticle = _mediatRContext.Articles.Single(articles => articles.Id == request.Id);
+            _mediatRContext.Articles.Remove(deleteArticle);
+            return deleteArticle;
         }
     }
 }
